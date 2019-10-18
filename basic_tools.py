@@ -6,9 +6,24 @@ def counter(df, col, sep=';', drop_na=True, na_value='N/A', sort='values', top=N
 
 	Count and sort values of specified column in DataFrame.
 	
-	The separator allows parsing of multi-value cells.
-
-	If drop_na=False NA values are included in the count.
+	Parameters
+	----------
+	df : DataFrame
+		The DataFrame to analyse.
+	col : str
+		Name of column to count.
+	sep : str, default ';'
+		Value of separator for parsing multi-value cells.
+	drop_na : bool, default True
+		Exclude NA values from counting.
+	na_value : str, default 'N/A'
+		NA value to use when "drop_na=False".
+	sort : {'values', 'keys'}, default 'values'
+		Sort the dictionary by values or keys.
+	top : int, default None, optional
+		Limit the dictionary by specifying the number of items to include in descending order.
+	min_val : int, default None, optional
+		Specify the minimum number of occurences to include in dictionary.
 	"""
 	
 	frame_check(df, col)

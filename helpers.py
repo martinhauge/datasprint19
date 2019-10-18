@@ -13,16 +13,22 @@ def frame_check(df, col, col_type=str):
 	if not col in df.columns:
 		raise KeyError('Column not found in DataFrame. Please check column name.')
 
-def generate_filename(base_name, extension, digits=2):
+def generate_filename(base_name, extension, digits=2, try_original=False):
 	"""Return file name as string.
 
 	Generate unique file name by incrementing suffix based on
 	content of present directory.
 	"""
+	
+	extension = extension.strip('.')
+
+	if try_original:
+		original_name = f'{base_name}.{extension}'
+		if not os.path.isfile(original_name):
+			return original_name
 
 	# Build template from arguments
-	extension = extension.strip('.')
-	template = f'{base_name}{{:0{digits}}}.{extension}'
+	template = f'{base_name}_{{:0{digits}}}.{extension}'
 	suffix = 1
 
 	# Initial file name
