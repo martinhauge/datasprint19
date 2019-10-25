@@ -21,6 +21,7 @@ def relative_frequencies(df, term, col='text', strict=False):
 
 	return pd.Series(term_counts / word_counts, name=term)
 
+
 def group_years(df, fill_years=True, export=False, export_path='.'):
 	"""Return DataFrame with texts grouped by year.
 
@@ -67,3 +68,45 @@ def group_years(df, fill_years=True, export=False, export_path='.'):
 		year_frame = year_frame.sort_index()
 
 	return year_frame
+
+def get_edges(df, col, sep=';'):
+	"""Returns list of edges (tuples of pairs) and a dictionary of values.
+	"""
+
+	frame_check(df, col)
+
+	# Prepare DataFrame for processing.
+	df = df.dropna(axis=0, subset=[col])
+
+	# Get rows with multiple values-
+	df = df[df[col].str.contains(sep)]
+
+	split_frame = df[col].str.split(sep, expand=True)
+
+	row_list = split_frame.values.tolist()
+
+	# Collapse list of lists and find unique values.
+	flat_list = list()
+
+	[[flat_list.append(item) for item in row if item and item not in flat_list] for row in row_list]
+
+	flat_list = sorted(flat_list)
+
+	# Generate dictionary of values and IDs for cross referencing.
+	values = dict()
+
+	for num, item in enumerate(flat_list):
+		values[item] = num
+
+	# Generate list of edges.
+	edge_list = list()
+
+	for row in row_list:
+		for first_index, _ in enumerate(row):
+			for second_index, _ in enumerate(row[first_index + 1:]):
+				first_item = row[first_index]
+				second_item = row[first_index + second_index + 1]
+				if first_item and second_item:
+					edge_list.append((values[first_item], values[second_item]))
+
+	return edge_list, values
