@@ -2,7 +2,7 @@
 This repository contains notebooks for data exploration and data visualisation for Datasprint 2019 at the Royal Danish Library.
 
 ## Setup
-Download or clone this repository and make sure you have (Python 3)[https://www.python.org/about/gettingstarted/] installed.
+Download or clone this repository and make sure you have [Python 3](https://www.python.org/about/gettingstarted/) installed.
 
 Once you have installed Python, open a terminal/command prompt and navigate to the datasprint19 folder. Then run the following command to install the required dependencies:
 
