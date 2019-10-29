@@ -14,4 +14,4 @@ When the depencies are installed you can start Jupyter by running:
 
 `jupyter notebook`
 
-Jupyter launches a file manager in a browser window. From there you can open any of the notebooks (characterised by the `.ipynb` file ending.
+Jupyter launches a file manager in a browser window. From there you can open any of the notebooks (characterised by the `.ipynb` file ending).
