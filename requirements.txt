@@ -1,4 +1,4 @@
-pandas
-matplotlib
-networkx
-jupyter
+pandas>=0.25.1
+matplotlib>=3.1.1
+networkx>=2.3
+jupyter>=1.0.0
