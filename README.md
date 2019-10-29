@@ -1,16 +1,16 @@
 # Datasprint 2019 notebooks
-This repository contains notebooks for data exploration and data visualisation for Datasprint 2019 at the Royal Danish Library.
+This repository contains Notebooks for data exploration and data visualisation for Datasprint 2019 at the Royal Danish Library.
 
 ## Setup
-Download or clone this repository and make sure you have [Python 3](https://www.python.org/about/gettingstarted/) installed.
+Download this repository and make sure you have [Python 3](https://www.python.org/about/gettingstarted/) installed.
 
-Once you have installed Python, open a terminal/command prompt and navigate to the datasprint19 folder. Then run the following command to install the required dependencies:
+Once you have installed Python, unzip the downloaded folder, open a terminal/command prompt window and navigate to the unzipped folder. Then run the following command to install the required dependencies:
 
 `pip3 install -r requirements.txt`
 
-**Note**: On Windows you may need to use `pip` instead of `pip3` in the command above depending on your setup.
+**Note**: On Windows you may need to use `pip` instead of `pip3` in the command above if `pip3` is not recognised.
 
-When the depencies are installed you can start Jupyter by running:
+When the depencies are installed you can start Jupyter by running the command:
 
 `jupyter notebook`
 
