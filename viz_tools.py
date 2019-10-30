@@ -3,11 +3,19 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 
-def dict_plot(dictionary, r=45, c='C0', title='Dictionary Plot', style='ggplot'):
+def counts_plot(dictionary, r=45, c='C0', title='Data Visualisation', style='ggplot'):
+	"""Draw bar plot based on dictionary input.
+
+	Dictionary keys are used as X-values - Dictionary values are used as Y-values.
+
+	The plot can be customised with various keyword arguments.
+	"""
+
 	plt.style.use(style)
 	plt.bar(*zip(*dictionary.items()), color=c)
 	plt.xticks(list(dictionary.keys()), rotation=r)
 	plt.title(title)
+	plt.show()
 
 def draw_network(edges):
 	"""Draw a network based on supplied list of edges.

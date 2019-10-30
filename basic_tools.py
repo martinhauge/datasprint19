@@ -78,10 +78,10 @@ def counter(df, col, sep=';', drop_na=True, na_value='N/A', sort='values', top=N
 
 	return count_dict
 
-def slice_frame(df, term, col='subjects', strict=False):
+def filter_frame(df, term, col='subjects', strict=False):
 	"""Return slice of DataFrame.
 
-	Slice DataFrame based on presence of term in specified column (Default: "subjects").
+	Filter DataFrame based on presence of term in specified column (Default: "subjects").
 	"""
 
 	frame_check(df, col)
@@ -94,14 +94,14 @@ def slice_frame(df, term, col='subjects', strict=False):
 		if not term in df[col].values:
 			raise Exception(f'Passed term "{term}" not found in {col}.')
 
-		sliced_frame = df[df[col] == term]
+		filtered_frame = df[df[col] == term]
 
-		return sliced_frame
+		return filtered_frame
 
 	# Case-insensitive matching of cells containing term.
-	sliced_frame = df[df[col].str.contains(term, case=False)]
+	filtered_frame = df[df[col].str.contains(term, case=False)]
 
-	return sliced_frame
+	return filtered_frame
 
 
 # USEFUL LISTS
@@ -149,4 +149,19 @@ nato_adjectives = [
 				'Greece',
 				'West German',
 				'Spanish'
+				]
+
+# List of KGB leaders 1954-1991.
+# Source: https://en.wikipedia.org/wiki/KGB#List_of_chairmen
+kgb_leaders = [
+				'Serov',		# 1954–1958 
+				'Shelepin',		# 1958–1961
+				'Ivshutin',		# act. 1961
+				'Semichastny',	# 1961–1967
+				'Andropov',		# 1967–1982 (Jan.–May)
+				'Fedorchuk',	# 1982 (May–Dec.)
+				'Chebrikov',	# 1982–1988
+				'Kryuchkov',	# 1988–1991
+				'Shebarshin',	# act. 1991
+				'Bakatin'		# 1991 (Aug.–Nov.)
 				]
