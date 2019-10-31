@@ -78,10 +78,13 @@ def counter(df, col, sep=';', drop_na=True, na_value='N/A', sort='values', top=N
 
 	return count_dict
 
-def filter_frame(df, term, col='subjects', strict=False):
+def filter_frame(df, terms, col='subjects', strict=False):
 	"""Return slice of DataFrame.
 
 	Filter DataFrame based on presence of term in specified column (Default: "subjects").
+	
+	Terms can be passed as a string or a list of strings.
+	for multiple terms documents containing any of the terms are included.
 	"""
 
 	frame_check(df, col)
@@ -89,17 +92,31 @@ def filter_frame(df, term, col='subjects', strict=False):
 	# Filter out NA values.
 	df = df.dropna(axis=0, subset=[col])
 
-	if strict:
-		# Matching exact content of cell.
-		if not term in df[col].values:
-			raise Exception(f'Passed term "{term}" not found in {col}.')
+	filtered_frame = pd.DataFrame()
 
-		filtered_frame = df[df[col] == term]
+	if isinstance(terms, str):
+		terms = [terms]
+	
+	if not isinstance(terms, list):
+		raise TypeError('Search terms must be a string or a list of strings.')
 
-		return filtered_frame
+	for term in terms:
+		if strict:
+			# Matching exact content of cell.
+			if not term in df[col].values:
+				raise Exception(f'Passed term "{term}" not found in {col}.')
 
-	# Case-insensitive matching of cells containing term.
-	filtered_frame = df[df[col].str.contains(term, case=False)]
+			term_frame = df[df[col] == term]
+
+			filtered_frame = pd.concat([filtered_frame, term_frame], sort=False)
+
+		else:
+			# Case-insensitive matching of cells containing term.
+			term_frame = df[df[col].str.contains(term, case=False)]
+
+			filtered_frame = pd.concat([filtered_frame, term_frame], sort=False)
+
+	filtered_frame = filtered_frame.drop_duplicates()
 
 	return filtered_frame
 

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 
-def counts_plot(dictionary, r=45, c='C0', title='Data Visualisation', style='ggplot'):
+def counts_plot(dictionary, r=45, c='C0', h=False, title='Data Visualisation', style='ggplot'):
 	"""Draw bar plot based on dictionary input.
 
 	Dictionary keys are used as X-values - Dictionary values are used as Y-values.
@@ -12,7 +12,11 @@ def counts_plot(dictionary, r=45, c='C0', title='Data Visualisation', style='ggp
 	"""
 
 	plt.style.use(style)
-	plt.bar(*zip(*dictionary.items()), color=c)
+	
+	if h:
+		plt.barh(*zip(*dictionary.items()), color=c)
+	else:
+		plt.bar(*zip(*dictionary.items()), color=c)
 	plt.xticks(list(dictionary.keys()), rotation=r)
 	plt.title(title)
 	plt.show()
