@@ -1,5 +1,5 @@
 # Datasprint 2019 notebooks
-This repository contains Notebooks for data exploration and data visualisation for Datasprint 2019 at the Royal Danish Library.
+This repository contains Notebooks for exploration, visualisation and processing of data for Datasprint 2019 at the Royal Danish Library.
 
 ## Setup
 Download the repository and make sure you have [Python 3](https://www.python.org/about/gettingstarted/) installed.
