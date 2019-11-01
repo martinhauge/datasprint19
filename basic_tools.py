@@ -182,3 +182,15 @@ kgb_leaders = [
 				'Shebarshin',	# act. 1991
 				'Bakatin'		# 1991 (Aug.–Nov.)
 				]
+
+# Incomplete list of 1980s World leaders.
+# Source: https://en.wikipedia.org/wiki/1980s#Notable_world_leaders
+
+world_leaders_80s = [
+				'Reagan',
+				'Bush',
+				'Gorbachev',
+				'Andropov',
+				'Thatcher',
+				'Kohl'
+				]

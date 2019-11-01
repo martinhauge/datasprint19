@@ -78,7 +78,7 @@ def get_edges(df, col, sep=';'):
 	# Prepare DataFrame for processing.
 	df = df.dropna(axis=0, subset=[col])
 
-	# Get rows with multiple values-
+	# Get rows with multiple values.
 	df = df[df[col].str.contains(sep)]
 
 	split_frame = df[col].str.split(sep, expand=True)
