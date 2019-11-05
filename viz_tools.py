@@ -3,32 +3,35 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 
-def counts_plot(dictionary, r=45, c='C0', h=False, title='Data Visualisation', style='ggplot'):
-	"""Draw bar plot based on dictionary input.
+def counts_plot(dictionary, r=45, c='C0', size=(8, 6), horizontal=False, title='Data Visualisation', style='ggplot'):
+    """Draw bar plot based on dictionary input.
 
-	Dictionary keys are used as X-values - Dictionary values are used as Y-values.
+    Dictionary keys are used as X-values - Dictionary values are used as Y-values.
 
-	The plot can be customised with various keyword arguments.
-	"""
+    The plot can be customised with various keyword arguments.
+    """
 
-	plt.style.use(style)
-	
-	if h:
-		plt.barh(*zip(*dictionary.items()), color=c)
-	else:
-		plt.bar(*zip(*dictionary.items()), color=c)
-	plt.xticks(list(dictionary.keys()), rotation=r)
-	plt.title(title)
-	plt.show()
+    plt.style.use(style)
+    
+    plt.figure(figsize=size)
+    
+    if horizontal:
+        dictionary = dict(sorted(dictionary.items(), key=(lambda x: x[1]), reverse=False))
+        plt.barh(*zip(*dictionary.items()), color=c)
+    else:
+        plt.bar(*zip(*dictionary.items()), color=c)
+        plt.xticks(list(dictionary.keys()), rotation=r)
+    plt.title(title)
+    plt.show()
 
 def draw_network(edges):
-	"""Draw a network based on supplied list of edges.
-	"""
+    """Draw a network based on supplied list of edges.
+    """
 
-	graph = nx.Graph()
+    graph = nx.Graph()
 
-	graph.add_edges_from(edges)
+    graph.add_edges_from(edges)
 
-	nx.draw(graph, with_labels=True)
+    nx.draw(graph, with_labels=True)
 
-	plt.show()
+    plt.show()
