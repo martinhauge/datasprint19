@@ -19,7 +19,7 @@ def relative_frequencies(df, term, col='text', strict=False):
         # Case-insensitive
         term_counts = df[col].str.count(term, re.IGNORECASE)
 
-    return pd.Series(term_counts / word_counts, name=term)
+    return pd.Series(term_counts / word_counts, name=term).fillna(0)
 
 
 def group_years(df, fill_years=True, export=False, export_path='.'):

@@ -24,7 +24,7 @@ def counts_plot(dictionary, r=45, c='C0', size=(8, 6), horizontal=False, title='
     plt.title(title)
     plt.show()
 
-def draw_network(edges):
+def draw_network(edges, node_col='#1f78b4', edge_col='k'):
     """Draw a network based on supplied list of edges.
     """
 
@@ -32,6 +32,6 @@ def draw_network(edges):
 
     graph.add_edges_from(edges)
 
-    nx.draw(graph, with_labels=True)
+    nx.draw(graph, with_labels=True, node_color=node_col, edge_color=edge_col)
 
     plt.show()
