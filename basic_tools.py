@@ -120,6 +120,42 @@ def filter_frame(df, terms, col='subjects', strict=False):
 
     return filtered_frame
 
+def filter_range(df, start=None, end=None):
+    """ Returns DataFrame filtered by date.
+
+    The function takes a DateFrame object and optionally a start date and/or an end date
+    and returns a filtered DataFrame of documents within the range.
+
+    Start dates are inclusive - end dates are exclusive.
+    
+    Start and end dates must be passed as strings formatted by datetime standards
+    and be either a year ('YYYY'), a month ('YYYY-MM') or a date ('YYYY-MM-DD').
+    """
+
+    # Check input
+    if not isinstance(df, pd.core.frame.DataFrame):
+        raise TypeError('The first argument must be a DateFrame.')
+
+    df['date'] = pd.to_datetime(df['date'])
+
+    if start:
+        if not isinstance(start, str):
+            raise TypeError('"start" must be a datetime formatted string.')
+    else:
+        # If no input, set start to start of DataFrame
+        start = df['date'].min()
+
+    if end:
+        if not isinstance(end, str):
+            raise TypeError('"end" must be a datetime formatted string.')
+    else:
+        # If no input, set end to end of DataFrame
+        end = df['date'].max()
+
+    # Filter data based on input
+    filtered_frame = df[(start <= df['date']) & (df['date'] <= end)]
+
+    return filtered_frame
 
 # USEFUL LISTS
 
